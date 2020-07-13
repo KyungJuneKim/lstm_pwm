@@ -13,7 +13,7 @@ class HyperParameter(object):
         self.input_size = 100
         self.output_size = len(self.rates)
 
-        self.epoch = 30
+        self.epoch = 10
         self.learning_rate = 0.01
         self.lstm_size = 100
 
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     x = []
     y = []
     for rate in param.rates:
-        for i in range(5):
+        for i in range(100):
             x.append(make_data_set(rate, period=param.input_size//5, cycle=5))
             y.append(param.rates.index(rate))
 
