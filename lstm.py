@@ -13,7 +13,7 @@ class HyperParameter(object):
         self.input_size = 100
         self.output_size = len(self.rates)
 
-        self.epoch = 50
+        self.epoch = 30
         self.learning_rate = 0.01
         self.lstm_size = 100
 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     y = []
     for rate in param.rates:
         for i in range(5):
-            x.append(make_data_set(rate, period=param.input_size/5, cycle=5))
+            x.append(make_data_set(rate, period=param.input_size//5, cycle=5))
             y.append(param.rates.index(rate))
 
     x = np.array(x, dtype=np.float32).reshape((-1, param.input_size, 1))
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     history = model.fit(x, y, batch_size=1, epochs=param.epoch)
     pred = model.predict(
         np.array(
-            make_data_set(0.5, period=param.input_size/5, cycle=5), dtype=np.float32
+            make_data_set(0.5, period=param.input_size//5, cycle=5), dtype=np.float32
         ).reshape((-1, param.input_size, 1))
     )
     print(pred)
