@@ -62,7 +62,7 @@ if __name__ == '__main__':
             y.append(param.rates.index(rate))
 
     x = np.array(x, dtype=np.float32).reshape((-1, param.input_size, 1))
-    y = np.eye(len(param.rates), dtype=np.float32)[y]
+    y = np.eye(len(param.rates), dtype=np.float32)[y]       # to one-hot
 
     history = model.fit(x, y, batch_size=1, epochs=param.epoch)
     pred = model.predict(
