@@ -1,7 +1,7 @@
 from random import randrange
 
 
-def make_data_set(rate, period=20, cycle=5):
+def make_data_set(rate, period: int = 20, cycle: int = 5):
     data = []
 
     for i in range(period):
