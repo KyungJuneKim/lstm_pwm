@@ -22,15 +22,16 @@ def split_data(_x: List, _y: List, ratio: List[float] = None):
     return train, val, test
 
 
-def plot_model(h, keys: List[str] = None):
+def plot_model(h, validation: bool = False, keys: List[str] = None):
     if keys is None:
-        keys = ['loss', 'accuracy', 'mse']
+        keys = ['loss']
     fig, axes = plt.subplots(nrows=1, ncols=len(keys), sharex='all')
 
     for idx, key in enumerate(keys):
         axes[idx].set_title('Model ' + key)
         axes[idx].plot(h.history[key], label=key)
-        axes[idx].plot(h.history['val_' + key], label='val_' + key)
+        if validation:
+            axes[idx].plot(h.history['val_' + key], label='val_' + key)
         axes[idx].set_xlabel('Epoch')
         axes[idx].set_ylabel(key.capitalize())
         axes[idx].legend()

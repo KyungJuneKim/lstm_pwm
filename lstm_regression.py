@@ -61,4 +61,4 @@ if __name__ == '__main__':
     )
     print(pred)
 
-    plot_model(history, keys=['loss', 'mae'])
+    plot_model(history, validation=True, keys=['loss', 'mae'])
