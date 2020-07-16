@@ -45,14 +45,19 @@ if __name__ == '__main__':
         x.append(make_data_set(ratio, period=param.period, cycle=param.cycle))
         y.append(ratio)
 
-    (x_train, y_train), (x_val, y_val) = split_data(x, y, ratio=[0.9])
+    (x_train, y_train), (x_val, y_val), (x_test, y_test) = split_data(x, y, ratio=[0.6, 0.3])
 
     x_train = np.array(x_train, dtype=np.float32).reshape((-1, param.input_size, 1))
     y_train = np.array(y_train, dtype=np.float32)
     x_val = np.array(x_val, dtype=np.float32).reshape((-1, param.input_size, 1))
     y_val = np.array(y_val, dtype=np.float32)
+    x_test = np.array(x_test, dtype=np.float32).reshape((-1, param.input_size, 1))
+    y_test = np.array(y_test, dtype=np.float32)
 
     history = model.fit(x_train, y_train, batch_size=1, epochs=param.epoch, validation_data=(x_val, y_val))
+
+    loss, mae = model.evaluate(x_test, y_test)
+    print(loss, mae)
 
     pred = model.predict(
         np.array(
