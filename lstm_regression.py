@@ -40,12 +40,12 @@ if __name__ == '__main__':
 
     x = []
     y = []
-    for i in range(1000):
+    for i in range(2000):
         ratio = random()
         x.append(make_data_set(ratio, period=param.period, cycle=param.cycle))
         y.append(ratio)
 
-    (x_train, y_train), (x_val, y_val), (_, _) = split_data(x, y, ratio=[0.8, 0.2])
+    (x_train, y_train), (x_val, y_val) = split_data(x, y, ratio=[0.9])
 
     x_train = np.array(x_train, dtype=np.float32).reshape((-1, param.input_size, 1))
     y_train = np.array(y_train, dtype=np.float32)

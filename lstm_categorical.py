@@ -50,14 +50,14 @@ if __name__ == '__main__':
             x.append(make_data_set(rate, period=param.period, cycle=param.cycle))
             y.append(param.rates.index(rate))
 
-        (x_train_tmp, y_train_tmp), (x_val_tmp, y_val_tmp), (_, _) = split_data(x, y, ratio=[0.8, 0.2])
+        (x_train_tmp, y_train_tmp), (x_val_tmp, y_val_tmp) = split_data(x, y, ratio=[0.8])
         x_train += x_train_tmp
         y_train += y_train_tmp
         x_val += x_val_tmp
         y_val += y_val_tmp
 
-    x_train = np.array(x_train, dtype=np.float32).reshape((-1, param.input_size, 1))
-    y_train = np.eye(len(param.rates), dtype=np.float32)[y_train]  # to one-hot
+    x_train = np.array(x_train, dtype=np.float32).reshape((-1, param.input_size, 1))    # reshape
+    y_train = np.eye(len(param.rates), dtype=np.float32)[y_train]                       # to one-hot
     x_val = np.array(x_val, dtype=np.float32).reshape((-1, param.input_size, 1))
     y_val = np.eye(len(param.rates), dtype=np.float32)[y_val]
 
