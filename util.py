@@ -15,12 +15,12 @@ def split_data(x: List, y: List, ratio: List[float] = None):
         warn('Too little ratio')
 
     indices = np.multiply(np.cumsum(ratio), len(x)).astype(np.int32)
-    splited = [(x[:indices[0]], y[:indices[0]])]
+    split = [(x[:indices[0]], y[:indices[0]])]
     for i, j in zip(indices[:-1], indices[1:]):
-        splited.append((x[i:j], y[i:j]))
-    splited.append((x[indices[-1]:], y[indices[-1]:]))
+        split.append((x[i:j], y[i:j]))
+    split.append((x[indices[-1]:], y[indices[-1]:]))
 
-    return splited
+    return split
 
 
 def plot_model(h, validation: bool = False, keys: List[str] = None):
