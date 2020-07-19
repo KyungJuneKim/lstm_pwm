@@ -5,7 +5,7 @@ from warnings import warn
 
 
 def split_data(x: List, y: List, ratio: List[float] = None):
-    if ratio is None:
+    if not ratio:
         ratio = [0.5, 0.3]
     if len(x) != len(y):
         raise AssertionError('dataset lists are not the same length')
@@ -24,7 +24,7 @@ def split_data(x: List, y: List, ratio: List[float] = None):
 
 
 def plot_model(h, validation: bool = False, keys: List[str] = None):
-    if keys is None:
+    if not keys:
         keys = ['loss']
     fig, axes = plt.subplots(nrows=1, ncols=len(keys), sharex='all', figsize=(15, 6))
 
